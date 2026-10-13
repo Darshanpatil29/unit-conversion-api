@@ -1,0 +1,19 @@
+@baseUrl = http://localhost:5220
+
+### 10 meters to feet
+GET {{baseUrl}}/api/convert?value=10&from=m&to=ft
+
+### 100 °C to °F
+GET {{baseUrl}}/api/convert?value=100&from=celsius&to=fahrenheit
+
+### 5 kg to pounds
+GET {{baseUrl}}/api/convert?value=5&from=kg&to=lb
+
+### Error: incompatible units
+GET {{baseUrl}}/api/convert?value=1&from=m&to=kg
+
+### List all units
+GET {{baseUrl}}/api/units
+
+### List temperature units
+GET {{baseUrl}}/api/units?category=temperature

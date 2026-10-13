@@ -1,0 +1,8 @@
+services:
+  api:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      # Development enables the API docs at http://localhost:8080/scalar
+      ASPNETCORE_ENVIRONMENT: Development
