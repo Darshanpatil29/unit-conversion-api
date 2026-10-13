@@ -17,3 +17,6 @@ GET {{baseUrl}}/api/units
 
 ### List temperature units
 GET {{baseUrl}}/api/units?category=temperature
+
+### List categories
+GET {{baseUrl}}/api/categories

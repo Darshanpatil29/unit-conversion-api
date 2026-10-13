@@ -31,6 +31,14 @@ public class ApiTests(WebApplicationFactory<Program> factory) : IClassFixture<We
     }
 
     [Fact]
+    public async Task Categories_lists_all_categories()
+    {
+        var categories = await _client.GetFromJsonAsync<string[]>("/api/categories");
+
+        Assert.Equal(["length", "mass", "temperature", "volume"], categories);
+    }
+
+    [Fact]
     public async Task Units_can_be_filtered_by_category()
     {
         var units = await _client.GetFromJsonAsync<JsonElement[]>("/api/units?category=temperature");

@@ -36,6 +36,7 @@ dotnet test
 | Endpoint | Description |
 | --- | --- |
 | `GET /api/convert?value=10&from=m&to=ft` | Convert a value |
+| `GET /api/categories` | List the supported categories |
 | `GET /api/units` | List all units |
 | `GET /api/units?category=temperature` | List units of one category |
 
@@ -81,7 +82,7 @@ tests/
   tested and reused on its own.
 - **Hardcoded units**, as allowed for this version. Later the list in `UnitCatalog` could be
   loaded from a database or a JSON file without changing the converter.
-- **Rounding.** Results are rounded to 15 significant digits to hide floating-point noise
-  (e.g. `211.99999999999997` becomes `212`).
+- **Rounding.** Results are rounded to 12 significant digits to hide floating-point noise
+  (e.g. `31.9999999999999` becomes `32`).
 - **GET request.** A conversion only calculates and changes nothing, so a simple GET is the natural fit,
   and it is easy to try in a browser.

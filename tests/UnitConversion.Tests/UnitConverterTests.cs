@@ -22,6 +22,20 @@ public class UnitConverterTests
         Assert.Equal(expected, _converter.Convert(value, from, to).Result, 9);
     }
 
+    [Theory]
+    [InlineData(0, "C", "F", 32)]
+    [InlineData(-40, "C", "F", -40)]
+    [InlineData(100, "C", "F", 212)]
+    [InlineData(37, "C", "F", 98.6)]
+    [InlineData(98.6, "F", "C", 37)]
+    [InlineData(32, "F", "K", 273.15)]
+    [InlineData(1, "lb", "oz", 16)]
+    [InlineData(500, "g", "kg", 0.5)]
+    public void Returns_exact_values_without_floating_point_noise(double value, string from, string to, double expected)
+    {
+        Assert.Equal(expected, _converter.Convert(value, from, to).Result);
+    }
+
     [Fact]
     public void Unit_lookup_ignores_case_and_accepts_aliases()
     {

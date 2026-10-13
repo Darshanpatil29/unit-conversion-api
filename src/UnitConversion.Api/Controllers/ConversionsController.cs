@@ -30,7 +30,12 @@ public class ConversionsController(IUnitConverter converter) : ControllerBase
         }
     }
 
-    /// <summary>Lists all supported units, optionally filtered by category (length, mass, temperature, volume).</summary>
+    /// <summary>Lists the supported categories, e.g. length, mass, temperature, volume.</summary>
+    [HttpGet("categories")]
+    [ProducesResponseType<IEnumerable<string>>(StatusCodes.Status200OK)]
+    public IActionResult GetCategories() => Ok(UnitCatalog.Categories);
+
+    /// <summary>Lists all supported units, optionally filtered by category (see /api/categories).</summary>
     [HttpGet("units")]
     [ProducesResponseType<IEnumerable<Unit>>(StatusCodes.Status200OK)]
     public IActionResult GetUnits([FromQuery] string? category = null)

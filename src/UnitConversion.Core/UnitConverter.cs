@@ -38,7 +38,9 @@ public class UnitConverter : IUnitConverter
         return new ConversionResult(from.Category, value, from, result, to);
     }
 
-    // Removes floating-point noise, e.g. 211.99999999999997 -> 212, by keeping 15 significant digits.
+    // Removes floating-point noise, e.g. 31.9999999999999 -> 32, by keeping 12 significant digits.
+    // Offset-based conversions (temperatures) can push the error up to the 14th-15th digit,
+    // so 15 digits is not enough; 12 is still far more precise than any real measurement.
     private static double Round(double value) =>
-        double.Parse(value.ToString("G15", CultureInfo.InvariantCulture), CultureInfo.InvariantCulture);
+        double.Parse(value.ToString("G12", CultureInfo.InvariantCulture), CultureInfo.InvariantCulture);
 }
